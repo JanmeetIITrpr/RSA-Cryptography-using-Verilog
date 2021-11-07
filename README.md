@@ -6,6 +6,6 @@ i.e  d * e = 1 mod (phi)
 
 Project Proposal - DONE
 
-Intermediate Submission - DONE
+Intermediate Submission - DONE (See Intermediate_submission.txt)
 
 Final Submission - IN PROGRESS
