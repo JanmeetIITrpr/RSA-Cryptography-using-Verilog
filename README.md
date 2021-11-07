@@ -5,5 +5,7 @@ use of public and private keys (cryptography). to calculate decryption key 'd' a
 i.e  d * e = 1 mod (phi)
 
 Project Proposal - DONE
+
 Intermediate Submission - DONE
+
 Final Submission - IN PROGRESS
