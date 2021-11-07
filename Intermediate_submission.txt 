@@ -1,0 +1,114 @@
+RSA - cryptosystem using Verilog
+PROJECT PROPOSAL AND INTERMEDIATE SUBMISSION BY Janmeet Singh Makkar (2020csb1175) && Prakhar Saxena (2020csb1111)
+
+Our project is based on verilog implementation of RSA encryption , it is a widely known cybersecurity practice which involves 
+use of public and private keys (cryptography). to calculate decryption key 'd' and encryption key 'e' we use extended euclidian algorithm  
+i.e  d * e = 1 mod (phi)
+
+Message WIDTH = 256 bits;
+
+INPUT-->
+1. 2 random prime numbers say p & q for  first part of public key :n=p*q;
+For eg= p = 128'd113680897410347; q = 128'd7999808077935876437321;
+2.clk i.e clock (1 bit);
+3.reset (1 bit)
+4.encrypt_decrypt(option for encry0tion decryption- 1 bit) : if =0 then decrypt the key else if =1 encrypt the key.
+5.msg_in: 256 bit Key to be encrypter or decrypted 
+For eg : msg_in = 256'h0000000000000000000000000000000000262d806a3e18f03ab37b2857e7e149;
+
+
+OUTPUT-->
+msg_out(256 bit): The finally generated key after encryption (if encrypt_decrypt=1) or decryption(if encrypt_decrypt=0). 
+
+
+Modules we will be using are as below-
+
+1.module divider(Z, R, done, X, Y, start, clk);
+
+2.module inverter(
+    input [WIDTH-1:0] p,//prime number 1
+	input [WIDTH-1:0] q,//prime nu,ber 2
+	input clk,//system clock
+	input reset,//resets module
+	output finish,//indicates finish for operation
+	output [WIDTH*2-1:0] e,//encryption key
+	output [WIDTH*2-1:0] d//decryption key
+    );//(parameter WIDTH = 32;) this is a modular inverter
+
+3.module mod(
+    input [WIDTH-1:0] a,
+    input [WIDTH-1:0] n,
+    output [WIDTH-1:0] R,
+    output [WIDTH-1:0] Q
+    );
+
+4.module mod_exp(
+    input [WIDTH*2-1:0] base,//base here represents (a) 
+	input [WIDTH*2-1:0] modulo,//modulo here is modulus (n)
+	input [WIDTH*2-1:0] exponent,//exponent here is the power of base (b)
+	input clk,//system clk
+	input reset,//resets module
+	output finish,//sends finish signal on completion
+    output [WIDTH*2-1:0] result
+    ); // to calculate *** a^b mod n *** we use right to left binary exponentiation
+
+5.module dff(
+    input D, //Input
+    input rst, //Active High Reset
+    input clk, //Clock 
+    output reg q //Output
+    );
+
+//Positive edge triggered D Flip Flop with asynch reset and a 2:1 mux
+6.module mux(
+    output reg out, //Output
+    input sel, //Input 1
+    input a, //Input 2
+    input b //Select Line
+    );//2:1 MUX
+
+7.module control(
+    input [WIDTH-1:0] p,q, //Input Random Primes
+    input clk,//system wide clock
+    input reset,//resets inverter module
+    input reset1,//resets modular exponentiation module
+    input encrypt_decrypt,//1 for encryption and 0 for decryption
+    input [WIDTH-1:0] msg_in,//input either message or cipher
+    output [WIDTH*2-1:0] msg_out,//output either decrypted message or cipher
+    output mod_exp_finish//finish signal indicator of mod exp module
+    );//Main module that uses 3 of the above  Modules
+
+Heirarchy of Files(modules) for implementation of program--->
+1.Control (main module that instantiates all other sub modules)
+  --> a) mod_exp (modular expontiator)
+  --> b) inverter--> mod divider
+
+
+//Concept of RSA cryptography
+OUTPUT is based on the rules (below is an example of general rsa cryptosytem(not bit specific)):
+>> Generating Public Key :
+Select two prime no's. Suppose P = 53 and Q = 59.
+Now First part of the Public key  : n = P*Q = 3127.
+ We also need a small exponent say e : *But e Must be An integer, *Not be a factor of n. 
+1 < e < Φ(n) [Φ(n) is discussed below], Let us now consider it to be equal to 3.
+Our Public Key is made of n and e.
+
+>> Generating Private Key :
+We need to calculate Φ(n) :
+Such that Φ(n) = (P-1)(Q-1)     
+      so,  Φ(n) = 3016
+    
+Now calculate Private Key, d : 
+d = (k*Φ(n) + 1) / e for some integer k
+For k = 2, value of d is 2011.
+
+//For Example:: (Now we are ready with our – Public Key ( n = 3127 and e = 3) and Private Key(d = 2011) as above)
+Now we will encrypt “HI” :
+Convert letters to numbers : H  = 8 and I = 9
+Thus Encrypted Data c = 89^e mod n. 
+Thus our Encrypted Data comes out to be 1394
+
+Now we will decrypt 1394 : 
+Decrypted Data = c^d mod n. 
+Thus our Encrypted Data comes out to be 89
+8 = H and I = 9 i.e. "HI".
