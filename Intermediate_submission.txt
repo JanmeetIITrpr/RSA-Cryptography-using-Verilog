@@ -62,9 +62,9 @@ Modules we will be using are as below-
 //Positive edge triggered D Flip Flop with asynch reset and a 2:1 mux
 6.module mux(
     output reg out, //Output
-    input sel, //Input 1
-    input a, //Input 2
-    input b //Select Line
+    input sel, //Select line
+    input a, //Input 1
+    input b //Input 2
     );//2:1 MUX
 
 7.module control(
