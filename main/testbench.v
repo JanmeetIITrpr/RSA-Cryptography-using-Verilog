@@ -14,7 +14,7 @@ module tb_main;
         p = 128'd113680897410347;
         q = 128'd7999808077935876437321;
         #100 
-      $display("RSA 256-BIT ENCRYPTION/DECRYPTION TESTER\n");
+        $display("\n\nRSA 256-BIT ENCRYPTION/DECRYPTION TESTER\n");
       $display("\nPrime Numbers Used are:\n1.p=%d\n2.q=%d\n",p,q);
         clk = 0;
         reset =0; reset1=0;
