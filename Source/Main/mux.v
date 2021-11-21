@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
-//2:1 mux 
+
 module mux(
-    output reg out, //Output
-    input sel, //Select line
-    input a, //Input 1
-    input b //Input 2
+    output reg out,
+    input sel,
+    input a,
+    input b
     );
     
     wire not_sel;
