@@ -1,4 +1,4 @@
-RSA Cryptography 
+RSA Cryptography (Instructions to run project are given at the bottom of the document.)
 
 Our project is based on verilog implementation of RSA encryption , it is a widely known cybersecurity practice which involves 
 use of public and private keys (cryptography). to calculate decryption key 'd' and encryption key 'e' we use extended euclidian algorithm  
@@ -37,4 +37,12 @@ Project Proposal - DONE
 
 Intermediate Submission - DONE (See Intermediate_submission.txt)
 
-Final Submission - IN PROGRESS
+Final Submission - DONE
+
+
+INSTRUCTIONS TO RUN THE PROJECT:
+1. Open "main" directory.
+2. Inside it are 2 files, main.v and testbench.v
+3. Use main.v as the design file and testbench.v as testbench.
+4. There are some sample inputs inside testbench, but you can modify them according to need.
+5. Run on Icarus Verilog 0.10.x simulator.
