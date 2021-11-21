@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 module control(
-    input [WIDTH-1:0] p,q, //Input Random Primes
-    input clk,//system wide clock
-    input reset,//resets inverter module
-    input reset1,//resets modular exponentiation module
-    input encrypt_decrypt,//1 for encryption and 0 for decryption
-    input [WIDTH-1:0] msg_in,//input either message or cipher
-    output [WIDTH*2-1:0] msg_out,//output either decrypted message or cipher
-    output mod_exp_finish//finish signal indicator of mod exp module
+    input [WIDTH-1:0] p,q,
+    input clk,
+    input reset,
+    input reset1,
+    input encrypt_decrypt,
+    input [WIDTH-1:0] msg_in,
+    output [WIDTH*2-1:0] msg_out,
+    output mod_exp_finish
     );
     
-    parameter WIDTH = 32;//defines size of input ports
+    parameter WIDTH = 32;
     
     wire inverter_finish;
     wire [WIDTH*2-1:0] e,d;
