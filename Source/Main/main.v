@@ -1,19 +1,24 @@
 `timescale 1ns / 1ps
+
+/*to calculate decryption key 'd' and encryption key 'e' we use extended euclidian algorithm  
+i.e                 d * e = 1 mod (phi)
+*/
+
 module control(
-    input [WIDTH-1:0] p,q,
+    input [WIDTH-1:0] p,q,//prime numbers
     input clk,
     input reset,
     input reset1,
-    input encrypt_decrypt,
-    input [WIDTH-1:0] msg_in,
-    output [WIDTH*2-1:0] msg_out,
+    input encrypt_decrypt,//if =1 it is used for encryption, otherwise decryption.
+    input [WIDTH-1:0] msg_in,//msg input to be encrypted/decrypted
+    output [WIDTH*2-1:0] msg_out,//output message after running the program
     output mod_exp_finish
     );
-    
+   
     parameter WIDTH = 32;
     
     wire inverter_finish;
-    wire [WIDTH*2-1:0] e,d;
+    wire [WIDTH*2-1:0] e,d;//e=encryption key.d=decryption key.
     wire [WIDTH*2-1:0] exponent = encrypt_decrypt?e:d;
     wire [WIDTH*2-1:0] modulo = p*q;
     wire mod_exp_reset  = 1'b0;
