@@ -18,7 +18,7 @@ module tb_main;
       $display("\nPrime Numbers Used are:\n1.p=%d\n2.q=%d\n",p,q);
         clk = 0;
         reset =0; reset1=0;
-        encrypt_decrypt = 0;
+        encrypt_decrypt = 0;//use encrypt_decrypt=1 for encryption or encrypt_decrypt=0 for decryption
         msg_in = 256'h0000000000000000000000000000000000262d806a3e18f03ab37b2857e7e149;
         #10 reset = 1;
         #10 reset = 0;
@@ -57,7 +57,7 @@ module tb_main;
         #10 reset1 = 0;
       #2980
       $display("Input Message is \t: %h",msg_in);
-      $display("Your encrypted Message is:%h\n", msg_out);
+        $display("Your decrypted Message is:%h\n", msg_out);
       #2980
       
        #1000 reset1 = 1;
