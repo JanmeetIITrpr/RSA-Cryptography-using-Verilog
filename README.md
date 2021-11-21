@@ -45,4 +45,5 @@ INSTRUCTIONS TO RUN THE PROJECT:
 2. Inside it are 2 files, main.v and testbench.v
 3. Use main.v as the design file and testbench.v as testbench.
 4. There are some sample inputs inside testbench, but you can modify them according to need.
-5. Run on Icarus Verilog 0.10.x simulator.
+5. Run on Icarus Verilog 0.10.x simulator and use encrypt_decrypt=1 for encryption or encrypt_decrypt=0 for decryption.
+6. Source directory also contains all module definitions.
